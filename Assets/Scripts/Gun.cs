@@ -17,7 +17,8 @@ public class Gun : MonoBehaviour
     }
 
     private void Fire(){
-        GameObject bullet = Instantiate(bulletPrefab, gunOffset.position, transform.rotation * Quaternion.Euler(0, 0, 90));
+        Vector3 bulletPosition = new Vector3(gunOffset.position.x, gunOffset.position.y, transform.position.z);
+        GameObject bullet = Instantiate(bulletPrefab, bulletPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * bulletSpeed;
     }

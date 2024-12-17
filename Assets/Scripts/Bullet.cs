@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour
             // Destroy(collision.gameObject);
             collision.GetComponent<EnemyObject>().health -= 10;
             Destroy(gameObject);
+        } else if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
     }
 }
