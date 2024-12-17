@@ -9,17 +9,36 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed = 1f;
     [SerializeField] private Transform gunOffset;
+    private bool Reloading = false;
+    public int currentAmmo = 7;
+    public int magazineSize = 7;
+    public int reloadTime = 2;
     void Update()
     {
         if(InputManager.Fire){
             Fire();
         }
+        if(!Reloading){
+            if(InputManager.Reload){
+                    Reloading = true;
+                    Invoke("Reload", reloadTime);
+            }
+        }
     }
 
     private void Fire(){
-        Vector3 bulletPosition = new Vector3(gunOffset.position.x, gunOffset.position.y, transform.position.z);
-        GameObject bullet = Instantiate(bulletPrefab, bulletPosition, transform.rotation * Quaternion.Euler(0, 0, 90));
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * bulletSpeed;
+        if(!Reloading){
+            if(currentAmmo > 0){
+                GameObject bullet = Instantiate(bulletPrefab, gunOffset.position, transform.rotation * Quaternion.Euler(0, 0, 90));
+                Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                rb.velocity = transform.right * bulletSpeed;
+                currentAmmo--;
+            }
+        }
+    }
+
+    private void Reload(){
+        currentAmmo = magazineSize;
+        Reloading = false;
     }
 }

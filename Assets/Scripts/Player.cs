@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class PlayerObject : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private GameObject glowstickPrefab;
+    private float throwSpeed = 3f;
     public bool alive;
-    public int health = 100;
-    
     private Vector2 movement;
-
     private Rigidbody2D rb;
+    [SerializeField] private float moveSpeed = 1f;
+    public int health = 100;
 
     private void Awake(){
         rb = GetComponent<Rigidbody2D>();
@@ -24,10 +25,19 @@ public class PlayerObject : MonoBehaviour
 
             // Move
             Move();
+
             if(health <= 0){
                 alive = false;
             }
         }
+    }
+
+    private void Update(){
+        // Throw
+            if(InputManager.Throw){
+                ThrowGlowstick();
+                health += 10;
+            }   
     }
     private void Look(){
         Vector2 mousePosition = Input.mousePosition;
@@ -45,5 +55,11 @@ public class PlayerObject : MonoBehaviour
         movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
         rb.velocity = movement * moveSpeed;
+    }
+
+    private void ThrowGlowstick(){
+        Vector3 glowstickPos = transform.position;
+        glowstickPos.z = -0.9f;
+        GameObject glowstick = Instantiate(glowstickPrefab, glowstickPos, transform.rotation * Quaternion.Euler(0, 0, 90));
     }
 }

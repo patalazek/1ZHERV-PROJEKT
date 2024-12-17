@@ -34,7 +34,7 @@ public class EnemyObject : MonoBehaviour
         if (collision.GetComponent<PlayerObject>())
         {
             // Destroy(collision.gameObject);
-            collision.GetComponent<PlayerObject>().health -= 0;
+            collision.GetComponent<PlayerObject>().health -= 10;
         }
     }
 }
