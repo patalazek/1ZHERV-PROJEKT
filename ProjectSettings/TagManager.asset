@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Bullet
-  - Enemy
-  - Environment
-  - CinemachineTarget
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -16,11 +12,11 @@ TagManager:
   - Water
   - UI
   - 
-  - Uncollidable
-  - Background
-  - Player
-  - Environment
-  - Sandbox
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
