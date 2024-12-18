@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -7,6 +8,7 @@ public class Flashlight : MonoBehaviour
 {
     private Light2D light;
     public int battery = 10000;
+    [SerializeField] public Bar flashlightBar;
     void Start(){
         light = GetComponent<Light2D>();
     }
@@ -21,6 +23,8 @@ public class Flashlight : MonoBehaviour
         if(light.intensity == 1){
             Invoke("DrainBattery", 1);
         }
+
+        flashlightBar.SetValue(battery);
     }
 
     void ToggleFlashlight(){
