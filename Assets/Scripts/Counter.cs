@@ -13,7 +13,11 @@ public class Counter : MonoBehaviour
     void Start(){
         text = GetComponentInChildren<TMP_Text>();
     }
-    public void SetValue(int value, int MaxValue, string description){
-        text.text = description + value + "/" + MaxValue;
+    public void SetValue(int value, int MaxValue, string description, int total){
+        if(total == -1000){
+            text.text = description + value + "/" + MaxValue;
+        } else{
+            text.text = description + value + "/" + MaxValue + " (" + total + ")";
+        }
     }
 }

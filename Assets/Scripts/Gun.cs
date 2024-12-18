@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform gunOffset;
     [SerializeField] private Counter ammoCounter;
     private bool Reloading = false;
+    public int currentTotalAmmo = 21;
     public int currentAmmo = 7;
     public int magazineSize = 7;
     public int reloadTime = 2;
@@ -22,14 +23,16 @@ public class Gun : MonoBehaviour
         }
         if(!Reloading){
             if(InputManager.Reload){
+                if(currentTotalAmmo > 0 && currentAmmo < magazineSize){
                     Reloading = true;
                     Invoke("Reload", reloadTime);
+                }
             }
         }
     }
 
     void FixedUpdate(){
-        ammoCounter.SetValue(currentAmmo, magazineSize, "Ammo:");
+        ammoCounter.SetValue(currentAmmo, magazineSize, "Ammo:", currentTotalAmmo);
     }
 
     private void Fire(){
@@ -46,7 +49,14 @@ public class Gun : MonoBehaviour
     }
 
     private void Reload(){
-        currentAmmo = magazineSize;
+        int ammoNeeded = magazineSize - currentAmmo;
+        if(currentTotalAmmo >= ammoNeeded){
+            currentTotalAmmo = currentTotalAmmo - ammoNeeded;
+            currentAmmo = magazineSize;
+        } else {
+            currentAmmo += currentTotalAmmo;
+            currentTotalAmmo = 0;
+        }
         Reloading = false;
     }
 
