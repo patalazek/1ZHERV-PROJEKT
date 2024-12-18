@@ -43,7 +43,7 @@ public class PlayerObject : MonoBehaviour
             healthBar.SetValue(health);
             
             // Update Glowsticks counter
-            glowstickCounter.SetValue(glowstickCount, glowstickMaxCount, "Glowsticks:");
+            glowstickCounter.SetValue(glowstickCount, glowstickMaxCount, "Glowsticks:", -1000);
 
         }
     }

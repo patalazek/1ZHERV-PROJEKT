@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
+    public GameObject Menu_overlay;
     public static Vector2 Movement;
     private PlayerInput playerInput;
     private InputAction moveAction;
@@ -37,5 +39,14 @@ public class InputManager : MonoBehaviour
         Flashlight = flashlightAction.triggered;
         Throw = throwAction.triggered;
         Menu = menuAction.triggered;
+        if(Menu){
+            if(Menu_overlay.activeSelf){
+                Menu_overlay.SetActive(false);
+                Time.timeScale = 1;
+            }else{
+                Menu_overlay.SetActive(true);
+                Time.timeScale = 0;
+            }
+        }
     }
 }
