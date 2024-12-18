@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Medkit : MonoBehaviour
+public class glowstickPack : MonoBehaviour
 {
-    private int healAmount = 50;
+    private int packCount = 3;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerObject>())
         {
             PlayerObject Player = collision.GetComponent<PlayerObject>();
-            Player.health += healAmount;
+            Player.glowstickCount += packCount;
+            if(Player.glowstickCount > Player.glowstickMaxCount)
+            {
+                Player.glowstickCount = Player.glowstickMaxCount;
+            }
             Destroy(gameObject);
         }
     }

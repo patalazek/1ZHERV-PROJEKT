@@ -1,0 +1,31 @@
+.panel {
+    background-color: rgba(58, 156, 120, 0.69);
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+}
+
+.menu {
+}
+
+.unity-button {
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgb(144, 255, 117);
+}
+
+.unity-button:hover {
+    background-color: rgba(0, 255, 11, 0);
+    -unity-background-image-tint-color: rgb(0, 255, 17);
+    opacity: 1;
+    border-left-color: rgb(34, 255, 0);
+    border-right-color: rgb(34, 255, 0);
+    border-top-color: rgb(34, 255, 0);
+    border-bottom-color: rgb(34, 255, 0);
+}
+
+.hide {
+    display: none;
+    visibility: hidden;
+}

@@ -16,6 +16,9 @@ public class InputManager : MonoBehaviour
     public static bool Flashlight;
     private InputAction throwAction;
     public static bool Throw;
+    private InputAction menuAction;
+    public static bool Menu;
+    GameObject menuObject;
 
     private void Awake(){
         playerInput = GetComponent<PlayerInput>();
@@ -24,6 +27,7 @@ public class InputManager : MonoBehaviour
         reloadAction = playerInput.actions["Reload"];
         flashlightAction = playerInput.actions["Flashlight_toggle"];
         throwAction = playerInput.actions["Throw"];
+        menuAction = playerInput.actions["Menu"];
     }
     
     private void Update(){
@@ -32,5 +36,6 @@ public class InputManager : MonoBehaviour
         Reload = reloadAction.triggered;
         Flashlight = flashlightAction.triggered;
         Throw = throwAction.triggered;
+        Menu = menuAction.triggered;
     }
 }
