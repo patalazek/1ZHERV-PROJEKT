@@ -9,9 +9,19 @@ public class ZombieSpawner : MonoBehaviour
     public float maxTime = 10.0f; // Maximální interval mezi spawnováním
     public Transform player; // Reference na hráče
 
-    private void Start()
+    private Coroutine spawnCoroutine;
+
+    private void OnEnable()
     {
-        StartCoroutine(SpawnZombies());
+        spawnCoroutine = StartCoroutine(SpawnZombies());
+    }
+
+    private void OnDisable()
+    {
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+        }
     }
 
     private IEnumerator SpawnZombies()
