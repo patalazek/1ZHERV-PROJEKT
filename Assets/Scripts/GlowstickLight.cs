@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class glowstick : MonoBehaviour
 {
-    private int litTime = 10;
+    [SerializeField] public int litTime = 10;
     void Start()
     {
         Invoke("LightsOut", litTime);

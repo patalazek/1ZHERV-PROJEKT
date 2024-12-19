@@ -12,7 +12,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform gunOffset;
     [SerializeField] private Counter ammoCounter;
     private bool Reloading = false;
-    public int currentTotalAmmo = 21;
+    public int currentTotalAmmo = 42;
     public int currentAmmo = 7;
     public int magazineSize = 7;
     public int reloadTime = 2;

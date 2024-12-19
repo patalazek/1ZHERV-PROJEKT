@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class Flashlight : MonoBehaviour
 {
     private Light2D light;
+    public int maxBattery = 10000;
     public int battery = 10000;
     [SerializeField] public Bar flashlightBar;
     void Start(){

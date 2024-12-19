@@ -25,7 +25,11 @@ public class ItemSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
 
             // Vyber náhodný prefab itemu
-            GameObject itemPrefab = itemPrefabs[Random.Range(0, itemPrefabs.Length)];
+            int itemNumber = Random.Range(0, 4);
+            if(itemNumber == 4){
+                itemNumber = 3;
+            }
+            GameObject itemPrefab = itemPrefabs[itemNumber];
 
             // Vyber náhodný spawnovací bod
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];

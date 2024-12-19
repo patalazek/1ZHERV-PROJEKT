@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2253911629886400664, guid: 403bfaab6e179c347befc49577ddb8e0, type: 3}
       propertyPath: m_Name
-      value: battery 1
+      value: battery
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 403bfaab6e179c347befc49577ddb8e0, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -119,3 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42e00ec4aa08d24b9d9c5366dc696c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  batteryAmount: 2500

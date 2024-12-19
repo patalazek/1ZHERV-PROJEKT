@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyObject : MonoBehaviour
 {
     public Transform target;
-    public float speed = 1.5f;
+    public float Speed = 1.5f;
     public int health = 100;
 
     private NavMeshAgent navMeshAgent;
@@ -50,7 +50,7 @@ public class EnemyObject : MonoBehaviour
         if (collision.GetComponent<PlayerObject>())
         {
             // Destroy(collision.gameObject);
-            collision.GetComponent<PlayerObject>().health -= 0;
+            collision.GetComponent<PlayerObject>().health -= 15;
         }
     }
 }

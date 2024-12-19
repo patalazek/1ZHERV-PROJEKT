@@ -10,7 +10,11 @@ public class Medkit : MonoBehaviour
         if (collision.GetComponent<PlayerObject>())
         {
             PlayerObject Player = collision.GetComponent<PlayerObject>();
-            Player.health += healAmount;
+            if(Player.health + healAmount > Player.maxHealth){
+                Player.health = Player.maxHealth;
+            } else {
+                Player.health += healAmount;
+            }
             Destroy(gameObject);
         }
     }

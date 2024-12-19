@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
         if (collision.GetComponent<EnemyObject>())
         {
             // Destroy(collision.gameObject);
-            collision.GetComponent<EnemyObject>().health -= 10;
+            collision.GetComponent<EnemyObject>().health -= 34;
             Destroy(gameObject);
         } else if (collision.CompareTag("Wall"))
         {
