@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyObject : MonoBehaviour
 {
@@ -8,25 +9,40 @@ public class EnemyObject : MonoBehaviour
     public float speed = 1.5f;
     public int health = 100;
 
-    private void Update(){
-        // Look
-        Look();
+    private NavMeshAgent navMeshAgent;
 
+    private void Start()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.updateUpAxis = false;
+    }
+
+    private void Update()
+    {
         // Move
         Move();
 
-        if(health <= 0){
+        if (health <= 0)
+        {
             Destroy(gameObject);
         }
     }
 
-    private void Move(){
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-    }
+    private void Move()
+    {
+        if (target != null)
+        {
+            navMeshAgent.SetDestination(target.position);
 
-    private void Look(){
-        Vector2 direction = (Vector2)target.position - (Vector2)transform.position;
-        transform.right = direction;
+            // Rotate towards the movement direction
+            Vector2 direction = (Vector2)navMeshAgent.steeringTarget - (Vector2)transform.position;
+            if (direction != Vector2.zero)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
