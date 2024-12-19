@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ammoBag : MonoBehaviour
 {
-    [SerializeField] Gun gun;
+    [SerializeField] public Gun gun; // Reference na Gun komponentu hráče
     private int ammoAmount = 28;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<PlayerObject>())
