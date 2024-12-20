@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerObject : MonoBehaviour
 {
@@ -19,14 +20,21 @@ public class PlayerObject : MonoBehaviour
     public int maxHealth = 100;
     public int glowstickCount = 10;
     public int glowstickMaxCount = 10;
- 
-    private void Awake(){
+    public TextMeshProUGUI deadMessage;
+    public TextMeshProUGUI infoMessage;
+
+    [SerializeField] InputManager InputManager;
+
+    private void Awake()
+    {
         rb = GetComponent<Rigidbody2D>();
         alive = true;
     }
 
-    private void FixedUpdate(){
-        if(alive){
+    private void FixedUpdate()
+    {
+        if (alive)
+        {
             // Look
             Look();
 
@@ -34,26 +42,44 @@ public class PlayerObject : MonoBehaviour
             Move();
 
             // Check if Alive
-            if(health <= 0){
+            if (health <= 0)
+            {
                 alive = false;
             }
 
             // Update Health Bar
             healthBar.SetValue(health);
-            
+
             // Update Glowsticks counter
             glowstickCounter.SetValue(glowstickCount, glowstickMaxCount, "Glowsticks:", -1000);
 
         }
     }
 
-    private void Update(){
+    private void Update()
+    {
         // Throw
-            if(InputManager.Throw){
-                ThrowGlowstick();
-            }   
+        if (InputManager.Throw)
+        {
+            ThrowGlowstick();
+        }
+
+        if (!alive)
+        {
+            if (deadMessage != null)
+            {
+                deadMessage.gameObject.SetActive(true);
+                deadMessage.text = "You died...";
+
+                infoMessage.gameObject.SetActive(true);
+                infoMessage.text = "Press restart and continue to try again!";
+
+                InputManager.GameOver = true;
+            }
+        }
     }
-    private void Look(){
+    private void Look()
+    {
         Vector2 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
@@ -65,14 +91,17 @@ public class PlayerObject : MonoBehaviour
         transform.right = direction;
     }
 
-    private void Move(){
+    private void Move()
+    {
         movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
         rb.velocity = movement * moveSpeed;
     }
 
-    private void ThrowGlowstick(){
-        if(glowstickCount > 0){
+    private void ThrowGlowstick()
+    {
+        if (glowstickCount > 0)
+        {
             Vector3 glowstickPos = transform.position;
             glowstickPos.z = -0.9f;
             GameObject glowstick = Instantiate(glowstickPrefab, glowstickPos, transform.rotation * Quaternion.Euler(0, 0, 90));

@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42e00ec4aa08d24b9d9c5366dc696c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  batteryAmount: 2500
+  batteryAmount: 1250
